@@ -783,7 +783,11 @@ class Encryption extends Wrapper {
 			try {
 				$source = $sourceStorage->fopen($sourceInternalPath, 'r');
 				if ($isRename) {
-					$this->sourcePath[$targetInternalPath] = $sourceStorage->getFullPath($sourceInternalPath);
+					if (method_exists($sourceStorage, "getFullPath")) {
+						$this->sourcePath[$targetInternalPath] = $sourceStorage->getFullPath($sourceInternalPath);
+					} else {
+						$this->sourcePath[$targetInternalPath] = $mountPoint . '/' . $sourceInternalPath;
+					}
 				} else {
 					unset($this->sourcePath[$targetInternalPath]);
 				}
