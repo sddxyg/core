@@ -100,6 +100,22 @@ class FilesContext extends RawMinkContext implements Context {
 	}
 
 	/**
+	 * @When I create a folder with the following name
+	 * @param TableNode $namePartsTable table of parts of the file name
+	 *                                  table headings: must be: |name-parts |
+	 * @return void
+	 */
+	public function createTheFollowingFolder(TableNode $namePartsTable) {
+		$fileName = '';
+
+		foreach ($namePartsTable as $namePartsRow) {
+			$fileName .= $namePartsRow['name-parts'];
+		}
+
+		$this->createAFolder($fileName);
+	}
+
+	/**
 	 * @Then there are no files\/folders listed
 	 * @return void
 	 */
@@ -379,7 +395,7 @@ class FilesContext extends RawMinkContext implements Context {
 	 * @return void
 	 */
 	public function theFileFolderShouldBeListed(
-		$name, $shouldOrNot, $trashbin = null, $pageObject = null
+		$name, $shouldOrNot, $trashbin = "", $pageObject = null
 	) {
 		$message = null;
 		$should = ($shouldOrNot !== "not");
