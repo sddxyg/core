@@ -24,7 +24,8 @@ Feature: files
 	Scenario: Create a folder inside another folder
 		When I create a folder with the name "top-folder"
 		And I open the folder "top-folder"
-		And I create a folder with the name "sub-folder"
+		Then there are no files/folders listed
+		When I create a folder with the name "sub-folder"
 		Then the folder "sub-folder" should be listed
 		And the files page is reloaded
 		Then the folder "sub-folder" should be listed
