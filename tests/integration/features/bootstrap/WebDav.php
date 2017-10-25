@@ -516,7 +516,6 @@ trait WebDav {
 		PHPUnit_Framework_Assert::assertEquals($count, count($elements)-1);
 	}
 
-
 	/**
 	 * @Then the content length of file :path with version index :index for user :user in versions folder is :length
 	 * @param $path
@@ -524,7 +523,7 @@ trait WebDav {
 	 * @param $user
 	 * @param $length
 	 */
-	public function theContentLengthOfFileWithVersionIndexForUserInVersionsFolderIs($path, $index, $user, $length) {
+	public function theContentLengthOfFileForUserInVersionsFolderIs($path, $index, $user, $length) {
 		$fileId = $this->getFileIdForPath($user, $path);
 		$elements = $this->listVersionFolder($user, '/meta/'.$fileId.'/v', 1, ['{DAV:}getcontentlength']);
 		$elements = array_values($elements);
