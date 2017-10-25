@@ -20,9 +20,9 @@ Feature: dav-versions
   Scenario: Remove a file
     Given user "user0" exists
     And as an "user0"
-    When user "user0" uploads file "data/davtest.txt" to "/davtest.txt"
     And user "user0" uploads file "data/davtest.txt" to "/davtest.txt"
-    Then the version folder of file "/davtest.txt" for user "user0" contains "1" elements
+    And user "user0" uploads file "data/davtest.txt" to "/davtest.txt"
+    And the version folder of file "/davtest.txt" for user "user0" contains "1" elements
     When user "user0" deletes file "/davtest.txt"
     And user "user0" uploads file "data/davtest.txt" to "/davtest.txt"
     Then the version folder of file "/davtest.txt" for user "user0" contains "0" elements
